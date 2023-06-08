@@ -12,6 +12,8 @@ typedef struct vec_s
     void ** data;
 } vec;
 
+vec vec_new(size_t cap);
+void vec_free(vec * v);
 void vec_print(vec * v);
 void vec_zero(vec * v, size_t ptr);
 void vec_malloc_or_realloc(vec * v, size_t len);

@@ -7,9 +7,8 @@
     int test_##name()   \
         func            \
 
-TEST(push, {
-    vec v;
-    v.data = NULL;
+TEST(new, {
+    vec v = vec_new(0);
     
     vec_push(&v, "hello");
     vec_push(&v, " ");
@@ -17,6 +16,17 @@ TEST(push, {
     vec_push(&v, "!");
     
     return v.cap == VEC_CAP_INC && v.ptr == 4;
+})
+
+TEST(push, {
+    vec v = vec_new(100);
+    
+    vec_push(&v, "hello");
+    vec_push(&v, " ");
+    vec_push(&v, "world");
+    vec_push(&v, "!");
+    
+    return v.cap == 100 && v.ptr == 4;
 })
 
 const char * test_extend_data1[] = {
@@ -32,8 +42,7 @@ const char * test_extend_data2[] = {
     "test 4"
 };
 TEST(extend, {
-    vec v;
-    v.data = NULL;
+    vec v = vec_new(0);
     
     vec_extend(&v, 4, (void **) test_extend_data1);
     vec_extend(&v, 4, (void **) test_extend_data2);
@@ -45,6 +54,7 @@ int main(int argc, char * argv[])
 {
     int status = 1;
 
+    status &= !test_new();
     status &= !test_push();
     status &= !test_extend();
     

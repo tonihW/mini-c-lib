@@ -19,7 +19,6 @@ void str_free(str * s)
     assert(s != NULL && s->data != NULL);
     
     free(s->data);
-    free(s);
 }
 
 void str_push(str * s, char * data)

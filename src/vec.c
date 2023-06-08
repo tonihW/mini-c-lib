@@ -4,6 +4,24 @@
 
 #define SWAP(T, a, b) do { T tmp = a; a = b; b = tmp; } while (0)
 
+vec vec_new(size_t cap)
+{
+    vec v;
+    v.data = NULL;
+    vec_malloc_or_realloc(&v, cap);
+
+    return v;
+}
+
+void vec_free(vec * v)
+{
+    assert(v->data != NULL);
+
+    free(v->data);
+    v->cap = 0;
+    v->ptr = 0;
+}
+
 void vec_print(vec * v)
 {
     printf("cap: %zu, ptr: %zu\n", v->cap, v->ptr);
