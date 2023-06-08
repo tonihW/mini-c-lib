@@ -9,7 +9,7 @@ typedef struct str_s
     char * data;
 } str;
 
-str * str_new(char * data);
+str str_new(char * data);
 void str_free(str * s);
 void str_push(str * s, char * data);
 

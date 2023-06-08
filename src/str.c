@@ -2,14 +2,14 @@
 #include <string.h>
 #include <assert.h>
 
-str * str_new(char * data)
+str str_new(char * data)
 {
     assert(data != NULL);
     
-    str * s = malloc(sizeof(str));
-    s->len = strlen(data);
-    s->data = malloc((s->len + 1) * sizeof(char));
-    memcpy(s->data, data, s->len + 1);
+    str s;
+    s.len = strlen(data);
+    s.data = malloc((s.len + 1) * sizeof(char));
+    memcpy(s.data, data, s.len + 1);
     
     return s;
 }
